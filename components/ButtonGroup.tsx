@@ -2,13 +2,14 @@ import React from 'react'
 
 interface Props {
   onSubmit?: (e: any) => void
+  className?: string
 }
 
 const ButtonGroup = (props: Props) => {
   return (
     <div>
       <button
-        className="btn btn-square rounded-l-none"
+        className={`btn btn-square ${props.className} `}
         onSubmit={props.onSubmit}
       >
         <svg

@@ -5,7 +5,7 @@ export default async function Handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { id } = req.body
+  const { id, username } = req.body
 
   console.log('disid', id)
 
@@ -13,13 +13,15 @@ export default async function Handler(
     auth: process.env.GITHUB_AUTH_TOKEN,
   })
 
+  // const username: string = 'masrayfa'
+
   const repos = await octokit
-    .request(`GET /user/73578698/repos`)
+    .request(`GET /users/${username}/repos`)
     .then((res) => res.data)
 
-  // const data = await fetch(`https://api.github.com/user/${id}/repos`).then(
-  //   (res) => res.json()
-  // )
+  // const reposByI: = await octokit
+  //   .request(`GET /`)
+  //   .then((res) => res.data)
 
   return res.status(200).json({
     data: repos,

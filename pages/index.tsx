@@ -10,37 +10,38 @@ export default function Home() {
   const [userId, setUserId] = useState(null)
 
   useEffect(() => {
-    console.log('ini session', session)
+    if (session) {
+      // console.log('ini session', session)
 
-    //@ts-ignore
-    setUserId(session?.user.id)
-    // console.log(userId)
-
-    async function fetchRepo() {
-      if (status === 'loading') return <p className="text-white">Loading...</p>
-      if (session) {
-        try {
-          // await fetch('/api/github/repos', {
-          //   method: 'POST',
-          //   headers: {
-          //     Accept: 'application/json',
-          //     'Content-Type': 'application/json',
-          //   },
-          //   body: JSON.stringify({
-          //     // @ts-ignore
-          //     id: userId,
-          //   }),
-          // })
-          const afterData = await fetch('/api/github/repos').then((res) =>
-            res.json()
-          )
-          console.log('after data:', afterData)
-        } catch (e) {
-          console.error(e)
-        }
-      }
+      //@ts-ignore
+      setUserId(session?.user.id)
     }
-    fetchRepo()
+
+    // async function fetchRepo() {
+    //   if (status === 'loading') return <p className="text-white">Loading...</p>
+    //   if (session) {
+    //     try {
+    //       // await fetch('/api/github/repos', {
+    //       //   method: 'POST',
+    //       //   headers: {
+    //       //     Accept: 'application/json',
+    //       //     'Content-Type': 'application/json',
+    //       //   },
+    //       //   body: JSON.stringify({
+    //       //     // @ts-ignore
+    //       //     id: userId,
+    //       //   }),
+    //       // })
+    //       const afterData = await fetch('/api/github/repos').then((res) =>
+    //         res.json()
+    //       )
+    //       console.log('after data:', afterData)
+    //     } catch (e) {
+    //       console.error(e)
+    //     }
+    //   }
+    // }
+    // fetchRepo()
   }, [session, status])
 
   return (
